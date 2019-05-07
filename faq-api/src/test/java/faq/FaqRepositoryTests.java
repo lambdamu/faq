@@ -85,6 +85,6 @@ public class FaqRepositoryTests {
 		assertEquals(1, page.getNumberOfElements());
 
 		page = this.faqRepository.search("galaxy", PageRequest.of(0, 100));
-		assertEquals(3, page.getNumberOfElements());
+		assertEquals(4, page.getNumberOfElements());
 	}
 }
