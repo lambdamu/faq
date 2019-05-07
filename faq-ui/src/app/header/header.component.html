@@ -14,14 +14,14 @@
                 <a class="nav-link" routerLinkActive="active" routerLink="/login" i18n="@@login">Login</a>
             </li>
             <li dropdown class="nav-item dropdown" [hidden]="!authenticated()">
-                <a class="nav-link dropdown-toggle" (click)="false" dropdownToggle id="userMenu"
+                <a class="nav-link dropdown-toggle active" (click)="false" dropdownToggle id="userMenu"
                     aria-controls="dropdown-userMenu">
                     {{ username() | titlecase }}
                 </a>
                 <ul id="dropdown-userMenu" *dropdownMenu class="dropdown-menu bg-dark" data-toggle="collapse"
                     data-target=".navbar-collapse.show" aria-labelledby="userMenu">
                     <li role="menuitem"><a class="nav-link " *ngIf="isAdmin()" routerLinkActive="active"
-                            routerLink="/edit" i18n="@@newFaq">New FAQ</a></li>
+                            routerLink="/create" i18n="@@newFaq">New FAQ</a></li>
                     <li role="menuitem"><a class="nav-link active" (click)="logout()"
                             i18n="@@logout">Logout</a></li>
                 </ul>

@@ -4,6 +4,8 @@
     <ng-template #updateBlock i18n="@@editFAQ">Edit FAQ</ng-template>
 </h2>
 
+<app-message [message]="message"></app-message>
+
 <form class="pt-4" [formGroup]="faqForm" *ngIf="faq">
 
     <div class="form-group">
@@ -66,10 +68,8 @@
         <ng-container *ngIf="newStore; else saveBlock" i18n="@@create">Create</ng-container>
         <ng-template #saveBlock i18n="@@save">Save</ng-template>
     </button>
-
     <button type="button" (click)="onDelete()" *ngIf="!newStore" class="btn btn-primary text-light m-2"
         i18n="@@delete">Delete</button>
 </form>
 
-<app-message [message]="message"></app-message>
 </div>

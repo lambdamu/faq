@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppService } from '../app.service';
 import { Page, Paging, Faqs, Faq } from '../model/api-resources';
-import { finalize } from 'rxjs/operators';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { finalize, switchMap } from 'rxjs/operators';
+import { Subscription, of } from 'rxjs';
 import { Message } from '../message/message.component';
 
 @Component({
@@ -9,21 +11,37 @@ import { Message } from '../message/message.component';
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
     paged: Page<Faqs> = null;
-    pageSize = 10;
+    pageSize = 5;
     query = '';
     private previousQuery = '';
     message = new Message();
+    subscription: Subscription;
 
-    constructor(private api: AppService) {
+    constructor(private api: AppService, private router: Router, private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.getFaqs(0);
+        // Indexing based on 1
+        this.subscription = this.route.paramMap
+        .pipe(
+            switchMap((params: ParamMap) => {
+                const pageNo = +params.get('page');
+                return of(Math.max(0, (!pageNo ? 1 : pageNo)-1));
+            }))
+        .subscribe(pageIndex => { this.getFaqs(pageIndex); });
     }
 
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
+
+    /**
+     * @param number - page index starting from 0
+     */
     private getFaqs(pageIndex: number) {
+        window.scroll(0, 0);
         this.message.setLoading();
         this.previousQuery = this.query;
         this.api.getFaqs(pageIndex, this.pageSize, this.query)
@@ -40,8 +58,12 @@ export class SearchComponent implements OnInit {
         return this.api.isAdmin();
     }
 
+    /**
+     * @param pageIndex - page index starting from 10
+     */
     onPageSelected(pageIndex: number) {
-        this.getFaqs(pageIndex);
+        const page = pageIndex + 1;
+        this.router.navigate(['search', page]);
     }
 
     onQueryBlur() {

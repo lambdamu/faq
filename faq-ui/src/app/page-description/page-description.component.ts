@@ -16,6 +16,10 @@ export class PageDescriptionComponent {
 
     constructor() { }
 
+    pageNotFound(): boolean {
+        return this.paging.number >= this.paging.totalPages;
+    }
+
     getFromElement(): number {
         return !this.paging ? 0 : this.paging.size * this.paging.number + 1;
     }

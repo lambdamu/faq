@@ -9,7 +9,6 @@ import { Paging } from '../model/api-resources';
 export class PagingComponent implements OnChanges {
     @Input() paging: Paging;
     @Output() pageSelected = new EventEmitter<number>();
-    selected = false;
     private pages: number[];
 
     constructor() { }
@@ -18,9 +17,11 @@ export class PagingComponent implements OnChanges {
     private computePages(): number[] {
         const windowSize = Math.min(10, this.paging.totalPages);
         const pages = [];
-        const start = Math.abs(this.paging.number % windowSize - this.paging.number);
-        for (let i = 0; i < windowSize; i++) {
-            pages.push(i + start);
+        if (this.paging.number < this.paging.totalPages) {
+            const start = Math.abs(this.paging.number % windowSize - this.paging.number);
+            for (let i = 0; i < windowSize; i++) {
+               pages.push(i + start);
+            }
         }
         return pages;
     }
@@ -33,11 +34,10 @@ export class PagingComponent implements OnChanges {
             }
         }
         this.pages = this.paging == null ? [] : this.computePages();
-        this.selected = false;
     }
 
     pageable() {
-        return this.pages.length > 0;
+        return this.pages && this.pages.length > 0;
     }
 
     hasPrevious(): boolean {
@@ -68,10 +68,10 @@ export class PagingComponent implements OnChanges {
         }
     }
 
+    /**
+     * @param index - page number starting from 0
+     */
     selectPage(index: number) {
-        if (!this.selected) {
-            this.selected = true;
-            this.pageSelected.emit(index);
-        }
+        this.pageSelected.emit(index);
     }
 }

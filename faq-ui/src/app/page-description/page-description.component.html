@@ -1,9 +1,10 @@
 <div *ngIf="paging">
     <div>
-        <span i18n="@@showing">{getTotalElements(), plural,
+        <span *ngIf="pageNotFound(); else found" i18n="@@pageNotFound">Page not found.</span>
+        <ng-template #found i18n="@@showing">{getTotalElements(), plural,
             =0 {Nothing found.}
             =1 {One entry found.}
             other {Showing entries {{getFromElement()}}-{{getToElement()}} of {{getTotalElements()}}.}
-            }</span>
+            }</ng-template>
     </div>
 </div>

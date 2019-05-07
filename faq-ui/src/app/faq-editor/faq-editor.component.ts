@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, AbstractControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
 import { Faq } from '../model/api-resources';
 import { Message, MessageStatus, MessageTemplate } from '../message/message.component';
@@ -21,7 +21,7 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
     message = new Message();
     newStore = false;
 
-    constructor(private api: AppService, private route: ActivatedRoute,
+    constructor(private api: AppService, private router: Router, private route: ActivatedRoute,
                 private formBuilder: FormBuilder, private modalService: ModalService) {
         this.faqForm = this.formBuilder.group({
             question: ['', [Validators.required, Validators.maxLength(255)]],
@@ -45,12 +45,17 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
 
     private init() {
         this.message.setLoading();
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.api.getFaq(id)
-            .subscribe(
-                faq => { this.message.clear(); this.initForm(faq); },
-                (error: HttpErrorResponse) => { this.api.alert(error, this.message); }
-            );
+        if (this.route.snapshot.routeConfig.path === 'create') {
+            this.router.navigate(['edit', 0], { skipLocationChange: true });
+        }
+        else { 
+            const id = +this.route.snapshot.paramMap.get('id');
+            this.api.getFaq(id)
+                .subscribe(
+                   faq => { this.message.clear(); this.initForm(faq); },
+                    (error: HttpErrorResponse) => { this.api.alert(error, this.message); }
+             );
+        }
     }
 
     private initForm(faq: Faq) {
@@ -65,9 +70,11 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
 
     private create() {
         this.message.setLoading();
+        window.scroll(0, 0);
         this.api.createFaq(this.faq)
             .subscribe(
                 faq => {
+                    window.history.pushState({}, '', `edit/${faq.uid}`);
                     this.message.setTemplate(MessageStatus.Success, MessageTemplate.Created);
                     this.initForm(faq);
                 },
@@ -77,6 +84,7 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
 
     private update() {
         this.message.setLoading();
+        window.scroll(0, 0);
         this.api.updateFaq(this.faq)
             .subscribe(
                 faq => {
@@ -89,6 +97,7 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
 
     private delete() {
         this.message.setLoading();
+        window.scroll(0, 0);
         this.api.deleteFaq(this.faq)
             .subscribe(
                 _ => {
