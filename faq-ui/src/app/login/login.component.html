@@ -1,0 +1,17 @@
+<div class="w-80 mx-auto" style="max-width: 300px;">
+    <app-message [message]="message"></app-message>
+    <form (keydown.enter)="login()">
+        <div class="form-group">
+            <label class="sr-only" for="username" i18n="@@username">Username</label>
+            <input [(ngModel)]="credentials.username" type="text" name="username" class="form-control" id="username"
+                placeholder="Username" i18n-placeholder="@@username" />
+        </div>
+        <div class="form-group">
+
+            <label class="sr-only" for="password" i18n="@@password">Password</label>
+            <input [(ngModel)]="credentials.password" type="password" name="password" class="form-control" id="password"
+                placeholder="Password" i18n-placeholder="@@password" />
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="login()" i18n="@@login">Login</button>
+    </form>
+</div>

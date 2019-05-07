@@ -1,0 +1,19 @@
+<div *ngIf="pageable()">
+  <ul class="pagination justify-content-end">
+    <li class="page-item" [class.disabled]="!hasPrevious()">
+      <a class="page-link" (click)="selectPrevious()" aria-label="Previous" i18n-arial-label="@@previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only" i18n="@@previous">Previous</span>
+      </a>
+    </li>
+    <li class="page-item" [class.active]="isCurrentPage(p)" *ngFor="let p of getPages()">
+        <a class="page-link" (click)="selectPage(p)">{{p+1}}</a>
+    </li>
+    <li class="page-item" [class.disabled]="!hasNext()">
+      <a class="page-link" (click)="selectNext()" aria-label="Next" i18n-arial-label="@@next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only"  i18n="@@next">Next</span>
+      </a>
+    </li>
+  </ul>
+</div>

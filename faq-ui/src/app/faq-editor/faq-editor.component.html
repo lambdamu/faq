@@ -1,0 +1,75 @@
+<div class="w-80 mx-auto" style="max-width: 800px;">
+<h2>
+    <ng-container *ngIf="newStore; else updateBlock" i18n="@@newFaq">New FAQ</ng-container>
+    <ng-template #updateBlock i18n="@@editFAQ">Edit FAQ</ng-template>
+</h2>
+
+<form class="pt-4" [formGroup]="faqForm" *ngIf="faq">
+
+    <div class="form-group">
+        <label for="question" i18n="@@question">Question</label>
+        <textarea class="form-control" id="question" name="question" rows="3" formControlName="question"
+            ngDefaultControl required></textarea>
+
+        <div *ngIf="question.invalid && (question.dirty || question.touched)" class="text-danger">
+            <div *ngIf="question?.errors['required']" i18n="@@questionRequired">Question is required.
+            </div>
+            <div *ngIf="question.errors['maxlength']" i18n="@@questionMaxLength">Question must contain fewer than
+                255
+                characters.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="answer" i18n="@@answer">Answer</label>
+        <textarea class="form-control" id="answer" name="answer" rows="3" formControlName="answer" ngDefaultControl
+            required></textarea>
+
+        <div *ngIf="answer.invalid && (answer.dirty || answer.touched)" class="text-danger">
+            <div *ngIf="answer.errors['required']" i18n="@@answerRequired">Answer is required.
+            </div>
+            <div *ngIf="answer.errors['maxlength']" i18n="@@answerMaxLength">Answer must contain fewer than 255
+                characters.
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tagset" i18n="@@tags">Tags</label>
+
+        <div id="tagset" class="list-group">
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                <input class="form-control" placeholder="New tag" i18n-placeholder="@@newTag"
+                    (keydown.enter)="onAddNewTag($event)" formControlName="newtag" ngDefaultControl />
+                <button type="button" [disabled]="!isValidNewTag()" (click)="onAddNewTag()"
+                    class="btn btn-primary text-light m-2" i18n="@@add">Add</button>
+            </div>
+            <div class="list-group-item d-flex justify-content-between align-items-center" formArrayName="tagset"
+                *ngFor="let tag of tagset.controls; let i = index">
+                {{tagset.at(i).value}}
+                <span class="badge badge-primary badge-pill ml-2">
+                    <button type="button" (click)="onDeleteTag(i)" class="close" aria-label="Delete"
+                        i18n-aria-label="@@delete">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" [disabled]="faqForm.pristine" (click)="onReset()" class="btn btn-primary text-light m-2"
+        i18n="@@reset">Reset</button>
+
+    <button type="submit" (click)="onSave()" [disabled]="!faqForm.valid || faqForm.pristine"
+        class="btn btn-primary text-light m-2">
+        <ng-container *ngIf="newStore; else saveBlock" i18n="@@create">Create</ng-container>
+        <ng-template #saveBlock i18n="@@save">Save</ng-template>
+    </button>
+
+    <button type="button" (click)="onDelete()" *ngIf="!newStore" class="btn btn-primary text-light m-2"
+        i18n="@@delete">Delete</button>
+</form>
+
+<app-message [message]="message"></app-message>
+</div>

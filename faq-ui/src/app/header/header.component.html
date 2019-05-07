@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <a class="navbar-brand" href="/" i18n="@@appTitle">Spring/Angular/Bootstrap REST API demo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+        i18n-aria-label="@@toggleNavigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+        <ul class="navbar-nav">
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                <a class="nav-link" routerLinkActive="active" routerLink="/search" i18n="@@home">Home</a>
+            </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" [hidden]="authenticated()">
+                <a class="nav-link" routerLinkActive="active" routerLink="/login" i18n="@@login">Login</a>
+            </li>
+            <li dropdown class="nav-item dropdown" [hidden]="!authenticated()">
+                <a class="nav-link dropdown-toggle" (click)="false" dropdownToggle id="userMenu"
+                    aria-controls="dropdown-userMenu">
+                    {{ username() | titlecase }}
+                </a>
+                <ul id="dropdown-userMenu" *dropdownMenu class="dropdown-menu bg-dark" data-toggle="collapse"
+                    data-target=".navbar-collapse.show" aria-labelledby="userMenu">
+                    <li role="menuitem"><a class="nav-link " *ngIf="isAdmin()" routerLinkActive="active"
+                            routerLink="/edit" i18n="@@newFaq">New FAQ</a></li>
+                    <li role="menuitem"><a class="nav-link active" (click)="logout()"
+                            i18n="@@logout">Logout</a></li>
+                </ul>
+            </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" [hidden]="isCurrentLocale('en')">
+                <a href="/en/index.html" class="nav-link active">English</a>
+            </li>
+            <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" [hidden]="isCurrentLocale('fr')">
+                <a href="/fr/index.html" class="nav-link active">Français</a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,10 @@
+.nav-link.active {
+	cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  
+  .navbar-brand {
+    font-size: medium;
+  }
+}

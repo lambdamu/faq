@@ -1,0 +1,10 @@
+<div *ngIf="hasText()" class="alert text-light my-2" [ngClass]="css()" role="alert">
+    <span [ngSwitch]="message.getTemplate()">
+        <ng-container *ngSwitchCase="templateSelector.InvalidLogin" i18n="@@invalidLogin">Invalid username or password.</ng-container>
+        <ng-container *ngSwitchCase="templateSelector.Created" i18n="@@created">Created.</ng-container>
+        <ng-container *ngSwitchCase="templateSelector.Saved" i18n="@@saved">Saved.</ng-container>
+        <ng-container *ngSwitchCase="templateSelector.Deleted" i18n="@@deleted">Deleted.</ng-container>
+        <ng-container *ngSwitchDefault>{{message.getText()}}</ng-container>
+    </span>
+</div>
+<div *ngIf="isLoading()" class="spinner-grow spinner-grow-sm text-warning text-center my-2"></div>

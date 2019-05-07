@@ -1,0 +1,12 @@
+<div *ngIf="alerts().length" class="alert alert-danger text-light mb-4" role="alert">
+    <button type="button" (click)="clear()" class="close" aria-label="Close" i18n-aria-label="@@close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+
+    <div>
+        <b i18n="@@reportError">Snap! Something went wrong. Please try again later or contact us.</b>
+    </div>
+    <div *ngFor="let alert of alerts()">
+        <span i18n="@@unexpectedFailure">Unexpected failure: {{alert}}</span>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.container.rooter {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    margin: auto;
+}
+
+.root {
+    display: block;
+    position: relative;
+    min-height: 100%;
+}
+
+app-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+}
