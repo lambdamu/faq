@@ -55,17 +55,20 @@ CRUD demo using Spring Boot and Angular as front-end.
 * CSRF support implementation
 * Angular route guard
 
-### Internationalisation
+### Internationalisation support
+
+The demo only contains data in English and does not support translations. 
+However both back-end and front-end are setup to support internationalisation if needed.
 
 #### Back-end
 
-* French / English
+* Resource bundle in French / English
 * Support for locale change request
 
 Note that there is an interpolation [bug](https://github.com/spring-projects/spring-boot/issues/3071) when using Spring's resource bundle with Hibernate's validator.
 
 #### Front-end
 
-* French / English
+* Interface available in French / English
 * Uses Angular AOT build-in i18n support.
 
