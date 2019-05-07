@@ -72,3 +72,16 @@ Note that there is an interpolation [bug](https://github.com/spring-projects/spr
 * Interface available in French / English
 * Uses Angular AOT build-in i18n support.
 
+
+### Sample tests
+
+#### Java
+
+* `faq.FaqRepositoryTests`
+* `faq.TagRepositoryTests`
+
+#### Angular
+
+* `src/paging/paging.component.spec.ts`
+
+
