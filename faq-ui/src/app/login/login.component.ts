@@ -18,6 +18,7 @@ export class LoginComponent {
 
     login(): boolean {
         this.credentials.username = this.credentials.username.trim();
+        this.credentials.password = this.credentials.password.trim();
         if (this.credentials.username && this.credentials.password) {
             this.message.setLoading();
             this.api.authenticate(this.credentials)

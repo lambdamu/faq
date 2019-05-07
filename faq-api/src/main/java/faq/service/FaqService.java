@@ -42,7 +42,6 @@ public class FaqService {
 	}
 
 	public Faq createFaq(ClientFaq newFaq) {
-		System.out.println("createFaq " + newFaq);
 		Optional<Faq> found = this.faqRepository.findByQuestion(newFaq.getQuestion());
 		if (found.isPresent()) {
 			throw new FaqNotUniqueException(found.get().getId());

@@ -18,7 +18,7 @@ public interface FaqRepository extends JpaRepository<Faq, Long> {
 	 * 
 	 * @param search   a natural language search string
 	 * @param pageable pagination request
-	 * @return list of FAQ items
+	 * @return page of FAQ items
 	 */
 	@Query(value = "WITH search(q) AS (SELECT plainto_tsquery(:search)) SELECT f.* FROM faq f, search s WHERE to_tsvector(f.question || ' ' || f.answer) @@ s.q OR f.id IN (SELECT ft.faq_id from faq_tag ft, tag t WHERE t.id = ft.tag_id AND to_tsvector(t.name) @@ s.q)", 
 	  countQuery = "WITH search(q) AS (SELECT plainto_tsquery(:search)) SELECT count(f.*) FROM faq f, search s WHERE to_tsvector(f.question || ' ' || f.answer) @@ s.q OR f.id IN (SELECT ft.faq_id from faq_tag ft, tag t WHERE t.id = ft.tag_id AND to_tsvector(t.name) @@ s.q)", 

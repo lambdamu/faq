@@ -6,3 +6,5 @@ node_modules/
 .settings
 package-lock.json
 .classpath
+.gradle
+.vscode

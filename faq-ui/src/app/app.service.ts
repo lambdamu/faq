@@ -32,7 +32,7 @@ export class AppService {
 
     private setLocale(locale: string) {
         const params = new HttpParams().set('lang', locale);
-        this.http.get<any>(this.config.ping, { params }).subscribe(
+        this.http.get(this.config.ping, { params }).subscribe(
             _ => {},
             (error: HttpErrorResponse) => { this.alert(error); }
         );
@@ -146,8 +146,8 @@ export class AppService {
         return this.http.put<Faq>(faq._links.self.href, faq);
     }
 
-    deleteFaq(faq: Faq): Observable<Faq> {
-        return this.http.delete<Faq>(faq._links.self.href);
+    deleteFaq(faq: Faq): Observable<any> {
+        return this.http.delete<any>(faq._links.self.href);
     }
 
     /**
