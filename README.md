@@ -14,7 +14,7 @@ To setup the database needed by the application and its user:
 
 Use `./gradlew bootRun` to build and run the application.
 
-Point your browser to [http://localhost:8080/en/index.html].
+Point your browser to http://localhost:8080/en/index.html
 
 ### Demo users
 
