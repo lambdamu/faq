@@ -141,6 +141,14 @@
           <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="pageNotFound" datatype="html">
+        <source>Page not found.</source>
+        <target>La page demandée n'existe pas.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/page-description/page-description.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="showing" datatype="html">
         <source>{VAR_PLURAL, plural, =0 {Nothing found.} =1 {One entry found.} other {Showing entries <x id="INTERPOLATION" equiv-text="{{getFromElement()}}" />-<x id="INTERPOLATION_1" equiv-text="{{getToElement()}}" /> of <x id="INTERPOLATION_2" equiv-text="{{getTotalElements()}}" />.} }</source>
         <target>{VAR_PLURAL, plural, =0 {Aucun résultat.} =1 {Une entrée trouvée.} other {List des entrées <x id="INTERPOLATION" equiv-text="{{getFromElement()}}" />-<x id="INTERPOLATION_1" equiv-text="{{getToElement()}}" /> sur <x id="INTERPOLATION_2" equiv-text="{{getTotalElements()}}" />.}}</target>
