@@ -96,7 +96,7 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	}
 
 	/**
-	 * Add validation <code>beforeSaveEvent</code>.
+	 * Add Hibernate validation <code>beforeCreate</code> and <code>beforeSave</code> events.
 	 */
 	@Override
 	public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener v) {
