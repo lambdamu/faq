@@ -12,8 +12,7 @@ import { ModalService } from '../modal.service';
 
 @Component({
     selector: 'app-faq-editor',
-    templateUrl: './faq-editor.component.html',
-    styleUrls: ['./faq-editor.component.scss']
+    templateUrl: './faq-editor.component.html'
 })
 export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
     faqForm: FormGroup;
@@ -47,8 +46,7 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
         this.message.setLoading();
         if (this.route.snapshot.routeConfig.path === 'create') {
             this.router.navigate(['edit', 0], { skipLocationChange: true });
-        }
-        else { 
+        } else {
             const id = +this.route.snapshot.paramMap.get('id');
             this.api.getFaq(id)
                 .subscribe(

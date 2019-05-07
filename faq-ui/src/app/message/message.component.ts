@@ -32,7 +32,7 @@ export class Message {
     }
 
     isLoading(): boolean {
-        return this.status == MessageStatus.Loading;
+        return this.status === MessageStatus.Loading;
     }
 
     /**

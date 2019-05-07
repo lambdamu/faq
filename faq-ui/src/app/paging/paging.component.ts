@@ -3,8 +3,7 @@ import { Paging } from '../model/api-resources';
 
 @Component({
     selector: 'app-paging',
-    templateUrl: './paging.component.html',
-    styleUrls: ['./paging.component.scss']
+    templateUrl: './paging.component.html'
 })
 export class PagingComponent implements OnChanges {
     @Input() paging: Paging;
@@ -14,7 +13,10 @@ export class PagingComponent implements OnChanges {
     constructor() { }
 
 
-    private computePages(): number[] {
+    computePages(): number[] {
+        if (this.paging == null ) {
+            return [];
+        }
         const windowSize = Math.min(10, this.paging.totalPages);
         const pages = [];
         if (this.paging.number < this.paging.totalPages) {
@@ -33,7 +35,7 @@ export class PagingComponent implements OnChanges {
                 this.paging = propChanged.currentValue;
             }
         }
-        this.pages = this.paging == null ? [] : this.computePages();
+        this.pages = this.computePages();
     }
 
     pageable() {

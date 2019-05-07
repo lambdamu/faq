@@ -3,8 +3,7 @@ import { Paging } from '../model/api-resources';
 
 @Component({
   selector: 'app-page-description',
-  templateUrl: './page-description.component.html',
-  styleUrls: ['./page-description.component.scss']
+  templateUrl: './page-description.component.html'
 })
 /**
  * Implemented as a component rather than a pipe

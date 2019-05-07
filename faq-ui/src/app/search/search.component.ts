@@ -8,8 +8,7 @@ import { Message } from '../message/message.component';
 
 @Component({
     selector: 'app-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss']
+    templateUrl: './search.component.html'
 })
 export class SearchComponent implements OnInit, OnDestroy {
     paged: Page<Faqs> = null;
@@ -28,7 +27,7 @@ export class SearchComponent implements OnInit, OnDestroy {
         .pipe(
             switchMap((params: ParamMap) => {
                 const pageNo = +params.get('page');
-                return of(Math.max(0, (!pageNo ? 1 : pageNo)-1));
+                return of(Math.max(0, (!pageNo ? 1 : pageNo) - 1));
             }))
         .subscribe(pageIndex => { this.getFaqs(pageIndex); });
     }

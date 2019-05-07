@@ -40,11 +40,9 @@ export class AppService {
 
     /**
      * Handle http error responses.
-     * 
      * Display fatal errors via the app-wide alert service.
      * Non-fatal errors will be forwarded to the message UI or
      * to the alert service if no ui is available.
-     * 
      * @param error - the http error
      * @param message - option, a message UI to display non-fatal errors
      */
