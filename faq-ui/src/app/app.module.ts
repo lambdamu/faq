@@ -20,6 +20,7 @@ import { FaqEditorComponent } from './faq-editor/faq-editor.component';
 import { ModalComponent } from './modal/modal.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 registerLocaleData(localeEn, 'en');
 
@@ -44,7 +45,8 @@ registerLocaleData(localeEn, 'en');
         FormsModule,
         ReactiveFormsModule,
         ModalModule.forRoot(),
-        BsDropdownModule.forRoot()
+        BsDropdownModule.forRoot(),
+        TypeaheadModule.forRoot()
     ],
     providers: [AppService, { provide: HTTP_INTERCEPTORS, useClass: XsrfInterceptor, multi: true }],
     bootstrap: [AppComponent]

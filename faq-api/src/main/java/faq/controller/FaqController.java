@@ -37,11 +37,11 @@ public class FaqController {
 	}
 
 	@GetMapping()
-	public PagedResources<FaqResource> all(
+	public PagedResources<FaqResource> browse(
 			@RequestParam(required = false, defaultValue = "") String search,
 			@RequestParam(required = false, defaultValue = "0") Integer page,
 			@RequestParam(required = false, defaultValue = "20") Integer size) {
-		Page<Faq> faqPage = this.faqService.all(search, page, size);
+		Page<Faq> faqPage = this.faqService.browse(search, page, size);
 		return this.pageAssembler.toResource(faqPage, this.faqAssembler);
 	}
 

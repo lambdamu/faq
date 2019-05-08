@@ -8,7 +8,7 @@
         </button>
       </div>
       <div class="modal-body">
-            <span [ngSwitch]="bodyValue">
+            <span [ngSwitch]="body">
         <ng-container *ngSwitchCase="bodySelector.Delete" i18n="@@confirmDelete">Are you sure you want to delete? This action is irreversible.</ng-container>
         <ng-container *ngSwitchCase="bodySelector.UnsavedChanges" i18n="@@conformLeave">There are unsaved changes. Are you sure you want to leave this page?</ng-container>
     </span>

@@ -4,11 +4,11 @@ import { FormBuilder, AbstractControl, FormGroup, FormArray, Validators } from '
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
 import { Faq } from '../model/api-resources';
+import { ModalBody } from '../modal/modal.component';
 import { Message, MessageStatus, MessageTemplate } from '../message/message.component';
 import { CanComponentDeactivate } from '../guards/can-deactivate.guard';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { ModalService } from '../modal.service';
+import { Observable, Subject, of } from 'rxjs';
+import { take, mergeMap, catchError, map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-faq-editor',
@@ -19,15 +19,29 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
     faq: Faq;
     message = new Message();
     newStore = false;
+    tagAutocompleteSource: Observable<string[]>;
+    modalBody: ModalBody;
+    modalConfirmation = new Subject<boolean>();
 
     constructor(private api: AppService, private router: Router, private route: ActivatedRoute,
-                private formBuilder: FormBuilder, private modalService: ModalService) {
+                private formBuilder: FormBuilder) {
         this.faqForm = this.formBuilder.group({
             question: ['', [Validators.required, Validators.maxLength(255)]],
             answer: ['', [Validators.required, Validators.maxLength(255)]],
             newtag: [''],
             tagset: this.formBuilder.array([])
         });
+
+        // Collect tags for auto-complete excluding existing tags
+        this.tagAutocompleteSource = Observable.create((observer: any) => {
+            observer.next(this.newtag.value);
+        })
+         .pipe(
+            mergeMap((containing: string) =>
+                this.api.findTags(containing)
+                .pipe(map((tags: string[]) => tags.filter(tag => !this.tagset.value.includes(tag))))),
+            catchError((error: HttpErrorResponse) => { this.api.alert(error); return []; })
+      );
     }
 
     ngOnInit() {
@@ -36,8 +50,7 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
 
     canDeactivate(): Observable<boolean> | boolean {
         if (this.faq != null && this.faqForm.dirty) {
-            return this.modalService.confirmUnsavedChanges()
-                .pipe(take(1));
+            return this.getModalConfirmation(ModalBody.UnsavedChanges);
         }
         return true;
     }
@@ -63,7 +76,9 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
     }
 
     private addTag(tag: string) {
-        this.tagset.push(this.formBuilder.control(tag));
+        if (!this.tagset.value.includes(tag)) {
+            this.tagset.push(this.formBuilder.control(tag));
+        }
     }
 
     private create() {
@@ -155,14 +170,26 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
 
     onDelete() {
         if (!this.newStore) {
-            return this.modalService.confirmDelete()
-                .pipe(take(1))
+            this.getModalConfirmation(ModalBody.Delete)
                 .subscribe((confirmed: boolean) => {
                     if (confirmed) {
                         this.delete();
                     }
                 });
         }
+    }
+
+    getModalConfirmation(body: ModalBody): Observable<boolean> {
+        if (this.modalBody == null) {
+            this.modalBody = body;
+            return this.modalConfirmation.asObservable().pipe(take(1));
+        }
+        return of(false);
+    }
+
+    onModalConfirmation(confirmed: boolean) {
+        this.modalBody = null;
+        this.modalConfirmation.next(confirmed);
     }
 
 }

@@ -10,9 +10,20 @@ export interface Faqs {
     faqResources: Faq[];
 }
 
-export interface Page<T> {
+export interface Tag {
+    name: string;
+}
+
+export interface Tags {
+    tagResources: Tag[];
+}
+
+export interface Collection<T> {
     _embedded: T;
     _links: {self: {href: string}};
+}
+
+export interface Page<T> extends Collection<T> {
     /**
      * Page size.
      */

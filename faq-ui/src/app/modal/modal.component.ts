@@ -1,49 +1,47 @@
-import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
-import { ModalBody, ModalService } from '../modal.service';
+import { Component, ViewChild, EventEmitter, Input, Output, OnChanges, SimpleChange } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
-import { Subscription } from 'rxjs';
 
-/**
- * Modal component listening to the modal service for
- * modal requests.
- */
+
+export enum ModalBody {
+    Delete,
+    UnsavedChanges
+}
+
 @Component({
     selector: 'app-modal',
     templateUrl: './modal.component.html'
 })
-export class ModalComponent implements OnInit, OnDestroy {
+export class ModalComponent implements OnChanges {
     @ViewChild(ModalDirective) modal: ModalDirective;
     bodySelector = ModalBody;
-    bodyValue: ModalBody;
-    subscription: Subscription;
-    confirmed: boolean;
+    @Input() body: ModalBody;
+    @Output() confirmed =  new EventEmitter<boolean>();
+    confirmation = false;
 
-    constructor(private modalService: ModalService) {
-    }
-
-    ngOnInit() {
-        this.subscription = this.modalService.body$.subscribe(body => {
-                this.bodyValue = body;
-                this.confirmed = false;
-                this.modal.show();
-         });
-    }
-
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
+    ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        for (const propName in changes) {
+            if (propName) {
+                const propChanged = changes[propName];
+                this.body = propChanged.currentValue;
+            }
+        }
+        if (this.body != null) {
+            this.confirmation = false;
+            this.modal.show();
+        }
     }
 
     onHidden() {
-        this.modalService.confirmSubject.next(this.confirmed);
+        this.confirmed.emit(this.confirmation);
     }
 
     decline() {
-        this.confirmed = false;
+        this.confirmation = false;
         this.modal.hide();
     }
 
     confirm() {
-        this.confirmed = true;
+        this.confirmation = true;
         this.modal.hide();
     }
 }

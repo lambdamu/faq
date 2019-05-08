@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 import { User } from './model/user';
-import { Principal, Page, Faqs, Faq } from './model/api-resources';
+import { Principal, Page, Collection, Faqs, Faq, Tags, Tag } from './model/api-resources';
 import { Credentials } from './model/credentials';
 import { Config } from './model/config';
 import { AlertService } from './alert.service';
@@ -146,6 +146,16 @@ export class AppService {
 
     deleteFaq(faq: Faq): Observable<any> {
         return this.http.delete<any>(faq._links.self.href);
+    }
+
+    findTags(containing: string): Observable<string[]> {
+        const params = new HttpParams()
+            .set('containing', containing ? containing : '');
+
+        return this.http.get<Collection<Tags>>(this.config.tagsFind, { params })
+        .pipe(map((res: Collection<Tags>) => {
+            return res._embedded ? res._embedded.tagResources.map((tag: Tag) => tag.name) : [];
+        }));
     }
 
     /**

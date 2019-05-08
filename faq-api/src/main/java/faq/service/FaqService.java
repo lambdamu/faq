@@ -27,7 +27,7 @@ public class FaqService {
 		this.tagRepository = tagRepository;
 	}
 
-	public Page<Faq> all(String search, Integer page, Integer size) {
+	public Page<Faq> browse(String search, Integer page, Integer size) {
 		Page<Faq> faqPage;
 		if (search.isEmpty()) {
 			faqPage = this.faqRepository.findAll(PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE)));

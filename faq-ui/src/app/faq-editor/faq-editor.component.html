@@ -42,8 +42,16 @@
 
         <div id="tagset" class="list-group">
             <div class="list-group-item d-flex justify-content-between align-items-center">
-                <input class="form-control" placeholder="New tag" i18n-placeholder="@@newTag"
-                    (keydown.enter)="onAddNewTag($event)" formControlName="newtag" ngDefaultControl />
+                <input class="form-control" 
+                        placeholder="New tag" 
+                        [typeaheadAsync]="true"
+                        [typeahead]="tagAutocompleteSource"
+                        [typeaheadMinLength]="1"
+                        (typeaheadOnSelect)="onAddNewTag()"
+                        i18n-placeholder="@@newTag"
+                        (keydown.enter)="onAddNewTag($event)" 
+                        formControlName="newtag" 
+                        ngDefaultControl />
                 <button type="button" [disabled]="!isValidNewTag()" (click)="onAddNewTag()"
                     class="btn btn-primary text-light m-2" i18n="@@add">Add</button>
             </div>
@@ -73,3 +81,4 @@
 </form>
 
 </div>
+<app-modal [body]="modalBody" (confirmed)="onModalConfirmation($event)"></app-modal>

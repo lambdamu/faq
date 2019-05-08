@@ -41,10 +41,10 @@ public class TagController {
 		return this.pageAssembler.toResource(tagPage, this.tagAssembler);
 	}
 
-	@GetMapping("/search")
+	@GetMapping("/find")
 	public Resources<TagResource> find(@RequestParam String containing) {
 		return new Resources<>(
 				this.tagService.find(containing).stream().map(tag -> this.tagAssembler.toResource(tag)).collect(Collectors.toList()),
-				linkTo(methodOn(TagController.class).find(null)).withRel("find"));
+				linkTo(methodOn(TagController.class).find(containing)).withRel("find"));
 	}
 }
