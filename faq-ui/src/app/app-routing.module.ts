@@ -10,7 +10,7 @@ import { CanDeactivateGuard } from './guards/can-deactivate.guard';
 const routes: Routes = [
     { path: '', redirectTo: 'search', pathMatch: 'full' },
     { path: 'search', component: SearchComponent },
-    { path: 'search/:page', component: SearchComponent },
+    { path: 'search/:query', component: SearchComponent },
     { path: 'login', component: LoginComponent },
     { path: 'edit/:id',  canActivate: [AdminGuard], canDeactivate: [CanDeactivateGuard], component: FaqEditorComponent },
     { path: 'create',  canActivate: [AdminGuard], canDeactivate: [CanDeactivateGuard], component: FaqEditorComponent }

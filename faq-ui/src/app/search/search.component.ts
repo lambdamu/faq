@@ -14,7 +14,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     paged: Page<Faqs> = null;
     pageSize = 5;
     query = '';
-    private previousQuery = '';
     message = new Message();
     subscription: Subscription;
 
@@ -26,23 +25,22 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.subscription = this.route.paramMap
         .pipe(
             switchMap((params: ParamMap) => {
-                const pageNo = +params.get('page');
-                return of(Math.max(0, (!pageNo ? 1 : pageNo) - 1));
+                const query = params.get('query');
+                return of(query);
             }))
-        .subscribe(pageIndex => { this.getFaqs(pageIndex); });
+        .subscribe(query => {
+            this.query = query ? query : '';
+            this.getFaqs(0);
+        });
     }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
 
-    /**
-     * @param number - page index starting from 0
-     */
     private getFaqs(pageIndex: number) {
         window.scroll(0, 0);
         this.message.setLoading();
-        this.previousQuery = this.query;
         this.api.getFaqs(pageIndex, this.pageSize, this.query)
         .pipe(finalize(() => {
           this.message.clear();
@@ -58,25 +56,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * @param pageIndex - page index starting from 10
+     * @param pageIndex - page index starting from 0
      */
     onPageSelected(pageIndex: number) {
-        const page = pageIndex + 1;
-        this.router.navigate(['search', page]);
-    }
-
-    onQueryBlur() {
-        this.query = this.query.trim();
-        if (!this.query) {
-            this.getFaqs(0);
-        }
+        this.getFaqs(pageIndex);
     }
 
     onSearch() {
         this.query = this.query.trim();
-        if (this.query !== this.previousQuery) {
-            this.getFaqs(0);
+        if (this.query.length > 64) {
+            this.query = this.query.substr(0, 64);
         }
+        this.router.navigate(['search', this.query]);
     }
 
     faqs(): Faq[] {

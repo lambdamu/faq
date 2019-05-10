@@ -1,6 +1,6 @@
 <form class="form-inline my-4 w-100 mx-auto" style="max-width: 800px;" (keydown.enter)="onSearch()">
     <label class="sr-only" for="query" i18n="@@search">Search</label>
-    <input type="text" class="w-75 form-control m-2" style="max-width: 700px;" id="query" name="query" placeholder="Keywords" (blur)="onQueryBlur()" i18n-placeholder="@@keywords" [(ngModel)]="query" />
+    <input type="text" class="w-75 form-control m-2" style="max-width: 700px;" id="query" name="query" placeholder="Keywords" (blur)="onSearch()" i18n-placeholder="@@keywords" [(ngModel)]="query" />
     <button type="submit" class="btn btn-primary m-2 text-white" i18n="@@search" (click)="onSearch()">Search</button>
 </form>
 
