@@ -15,8 +15,8 @@ INSERT INTO faq_tag(faq_id, tag_id) VALUES(1, 1);
 INSERT INTO faq_tag(faq_id, tag_id) VALUES(1, 3);
 INSERT INTO faq_tag(faq_id, tag_id) VALUES(2, 1);
 INSERT INTO faq_tag(faq_id, tag_id) VALUES(3, 2);
-INSERT INTO faq_tag(faq_id, tag_id) VALUES(4, 3);
-INSERT INTO faq_tag(faq_id, tag_id) VALUES(5, 3);
-INSERT INTO faq_tag(faq_id, tag_id) VALUES(6, 3);
+INSERT INTO faq_tag(faq_id, tag_id) VALUES(4, 2);
+INSERT INTO faq_tag(faq_id, tag_id) VALUES(5, 2);
+INSERT INTO faq_tag(faq_id, tag_id) VALUES(6, 2);
 
 
