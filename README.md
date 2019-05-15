@@ -12,7 +12,7 @@
 
 **IMPORTANT**: Dans Postman, vous devez: 
 * créer un environnement avec la variable X-XSRF-TOKEN et l'utiliser pour la collection.
-* utiliser les requêtes login/logout pour tester les permissions sur differents rôles.
+* utiliser les requêtes login user/admin pour tester les permissions. Un script post-query informe la variable X-XSRF-TOKEN.
 
 ### Challenge technique front-end
 
@@ -89,7 +89,7 @@ CRUD demo using Spring Boot and Angular as front-end.
 ### Security
 
 * Spring route security
-* CSRF support implementation
+* JWT not implemented but Spring CSRF is enabled
 * Angular route guard
 
 ### Internationalisation support
