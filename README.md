@@ -10,7 +10,8 @@
 * Être assemblé via Gradle: oui
 * Tests: via l'interface Angular, ou l'export Postman (`faq-api/api.postman_collection.json`). 
 
-**IMPORTANT**: Dans Postman, vous devez: 
+**IMPORTANT**
+Dans Postman, vous devez: 
 * créer un environnement avec la variable X-XSRF-TOKEN et l'utiliser pour la collection.
 * utiliser les requêtes login user/admin pour tester les permissions. Un script post-query informe la variable X-XSRF-TOKEN.
 
@@ -29,17 +30,18 @@ Après une recherche, si l'utilisateur veut accéder au listing, il peut soit cl
 * User story 4 (recherche anonymous): oui, il s'agit en fait de la même interface que pour la 3
 * Assemblé via Gulp ou Webpack: non
 * AngularJS ou Angular 2: non, Angular 7
-* Testing: un test example peut être tester via:
+* Testing: un tout petit test est disponible peut êtr vérifié via:
 
 ```
 $ cd faq-ui
 $ ng test
 ```
 
+La suite de ce README est anglais, tel que je l'avais écrit à l'origine.
 
 ## Requirements
 
-A running PostgreSQL server >= 11.2
+A running PostgreSQL server >= 11.2 with postgres user access.
 
 ## Configure
 
@@ -94,7 +96,7 @@ CRUD demo using Spring Boot and Angular as front-end.
 
 ### Internationalisation support
 
-The demo only contains data in English and does not support translations. 
+The demo contains data in English only and does not support translations. 
 However both back-end and front-end are setup to support internationalisation if needed.
 
 #### Back-end
