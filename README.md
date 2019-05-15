@@ -1,5 +1,41 @@
 # Spring/Angular/Bootstrap REST API demo
 
+## À l'attention de Netheos
+
+Challenge technique back-end:
+* Les user stories 1, 2 et 3 sont supportées
+* Utiliser un SGBD type MySQL (ou MariaDB) ou PostgreSQL: oui PostgresSQL 
+* Être compilable sous la forme d'un WAR ou d'un fat jar (java 8+): Spring Boot fat jar 
+* Être assemblé via Gradle: oui
+* Tests: via l'interface Angular, ou l'export Postman (`faq-api/api.postman_collection.json`). 
+
+*IMPORTANT*: Dans Postman, vous devez: 
+* créer un environnement avec la variable X-XSRF-TOKEN et l'utiliser pour la collection.
+* utiliser les requêtes login/logout pour tester les permissions sur differents rôles.
+
+Challenge technique front-end:
+
+L'interface diffère: l'éditeur de FAQ est disponible 
+* soit à partir du sous-menu Admin
+* soit en cliquant sur le lien d'édition disponible pour chaque FAQ listée si l'utilisateur est admin
+
+Il n'y a qu'une seule interface pour la recherche et le listing.
+Après une recherche, si l'utilisateur veut accéder au listing, il peut soit clicker sur 'Home/Accueil' soit effacer sa recherche. 
+
+* User story 1 (login): oui mais sans le mot de passe oublié
+* User story 2 (listing): oui, mais la fonctionnalité est également offerte à un non-admin
+* User story 3 (recherche admin): oui, mais la recherche porte sur tous les champs (réponse inclue)
+* User story 4 (recherche anonymous): oui, il s'agit en fait de la même interface que pour la 3
+* Assemblé via Gulp ou Webpack: non
+* AngularJS ou Angular 2: non, Angular 7
+* Testing: un test example peut être tester via:
+
+```
+$ cd faq-ui
+$ ng test
+```
+
+
 ## Requirements
 
 A running PostgreSQL server >= 11.2
