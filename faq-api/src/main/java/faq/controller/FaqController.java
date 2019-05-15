@@ -4,6 +4,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.http.ResponseEntity;
@@ -41,7 +43,7 @@ public class FaqController {
 			@RequestParam(required = false, defaultValue = "") String search,
 			@RequestParam(required = false, defaultValue = "0") Integer page,
 			@RequestParam(required = false, defaultValue = "20") Integer size) {
-		Page<Faq> faqPage = this.faqService.browse(search, page, size);
+		Page<Faq> faqPage = this.faqService.browse(search, page, size, Sort.by(Direction.DESC, "id"));
 		return this.pageAssembler.toResource(faqPage, this.faqAssembler);
 	}
 

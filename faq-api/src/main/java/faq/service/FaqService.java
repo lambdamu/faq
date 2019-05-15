@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,12 +28,12 @@ public class FaqService {
 		this.tagRepository = tagRepository;
 	}
 
-	public Page<Faq> browse(String search, Integer page, Integer size) {
+	public Page<Faq> browse(String search, Integer page, Integer size, Sort sort) {
 		Page<Faq> faqPage;
 		if (search.isEmpty()) {
-			faqPage = this.faqRepository.findAll(PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE)));
+			faqPage = this.faqRepository.findAll(PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE), sort));
 		} else {
-			faqPage = this.faqRepository.search(search, PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE)));
+			faqPage = this.faqRepository.search(search, PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE), sort));
 		}
 		return faqPage;
 	}
@@ -78,6 +79,7 @@ public class FaqService {
 	}
 
 	public void deleteById(Long id) {
+		this.faqRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
 		this.faqRepository.deleteById(id);
 	}
 }
