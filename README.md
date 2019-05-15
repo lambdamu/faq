@@ -19,9 +19,9 @@ Dans Postman, vous devez:
 
 L'interface diffère: l'éditeur de FAQ est disponible 
 * soit à partir du sous-menu Admin
-* soit en cliquant sur le lien d'édition disponible pour chaque FAQ listée si l'utilisateur est admin
+* soit en cliquant sur le lien d'édition disponible pour chaque FAQ listée - si l'utilisateur est admin
 
-Il n'y a qu'une seule interface pour la recherche et le listing.
+Il n'y a qu'une seule interface pour la recherche et le listing et elle est accessible par tous les utilisateurs.
 Après une recherche, si l'utilisateur veut accéder au listing, il peut soit clicker sur 'Home/Accueil' soit effacer sa recherche. 
 
 * User story 1 (login): oui mais sans le mot de passe oublié
@@ -30,7 +30,7 @@ Après une recherche, si l'utilisateur veut accéder au listing, il peut soit cl
 * User story 4 (recherche anonymous): oui, il s'agit en fait de la même interface que pour la 3
 * Assemblé via Gulp ou Webpack: non
 * AngularJS ou Angular 2: non, Angular 7
-* Testing: un tout petit test est disponible peut être vérifié via:
+* Testing: un tout petit test peut être vérifié via:
 
 ```
 $ cd faq-ui
