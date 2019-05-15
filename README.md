@@ -37,7 +37,7 @@ $ cd faq-ui
 $ ng test
 ```
 
-La suite de ce README est anglais, tel que je l'avais écrit à l'origine.
+La suite de ce README est en anglais, tel que je l'avais écrit à l'origine.
 
 ## Requirements
 
