@@ -42,7 +42,6 @@ dependencies {
     compile("org.hibernate.validator:hibernate-validator")
     compile("org.springframework.boot:spring-boot-starter-hateoas")
     //compile("org.hibernate:hibernate-search-orm")
-    //compile("mysql:mysql-connector-java")
     compile("org.postgresql:postgresql")
 	compile('org.apache.commons:commons-lang3')
     
