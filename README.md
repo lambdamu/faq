@@ -2,18 +2,19 @@
 
 ## À l'attention de Netheos
 
-Challenge technique back-end:
+### Challenge technique back-end
+
 * Les user stories 1, 2 et 3 sont supportées
 * Utiliser un SGBD type MySQL (ou MariaDB) ou PostgreSQL: oui PostgresSQL 
 * Être compilable sous la forme d'un WAR ou d'un fat jar (java 8+): Spring Boot fat jar 
 * Être assemblé via Gradle: oui
 * Tests: via l'interface Angular, ou l'export Postman (`faq-api/api.postman_collection.json`). 
 
-*IMPORTANT*: Dans Postman, vous devez: 
+**IMPORTANT**: Dans Postman, vous devez: 
 * créer un environnement avec la variable X-XSRF-TOKEN et l'utiliser pour la collection.
 * utiliser les requêtes login/logout pour tester les permissions sur differents rôles.
 
-Challenge technique front-end:
+### Challenge technique front-end
 
 L'interface diffère: l'éditeur de FAQ est disponible 
 * soit à partir du sous-menu Admin
