@@ -74,12 +74,16 @@ export class MessageComponent {
     templateSelector = MessageTemplate;
     @Input() message: Message;
 
-    css(): string {
+    textCss(): string {
         switch (this.message.getStatus()) {
             case MessageStatus.Failure: return 'alert-danger';
             case MessageStatus.Success: return 'alert-success';
             default: return 'alert-info';
         }
+    }
+
+    spinnerCss(): string {
+        return this.message.isLoading() ? 'visible' : 'invisible';
     }
 
     hasText(): boolean {
