@@ -30,7 +30,7 @@ Après une recherche, si l'utilisateur veut accéder au listing, il peut soit cl
 * User story 4 (recherche anonymous): oui, il s'agit en fait de la même interface que pour la 3
 * Assemblé via Gulp ou Webpack: non
 * AngularJS ou Angular 2: non, Angular 7
-* Testing: un tout petit test est disponible peut êtr vérifié via:
+* Testing: un tout petit test est disponible peut être vérifié via:
 
 ```
 $ cd faq-ui
