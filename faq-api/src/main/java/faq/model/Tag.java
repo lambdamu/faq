@@ -12,7 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.NaturalId;
@@ -36,7 +36,7 @@ public class Tag implements Identifiable<Long>, Comparable<Tag> {
 
 	@NaturalId
 	@Column(nullable = false, unique = true)
-	@NotEmpty(message="{tag.name.notEmpty")
+	@NotBlank(message="{tag.name.notBlank")
 	@Size(min = 1, max = 64, message = "{tag.name.size}")
 	private String name;
 

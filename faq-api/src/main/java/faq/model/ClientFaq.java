@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 /**
@@ -18,15 +18,15 @@ import javax.validation.constraints.Size;
  */
 public class ClientFaq implements Serializable {
 	private static final long serialVersionUID = -8083073367349230351L;
-	@NotEmpty(message = "{faq.question.notEmpty}")
+	@NotBlank(message = "{faq.question.notBlank}")
 	@Size(min = 1, max = 255, message = "{faq.question.size}")
 	private String question;
 	
-	@NotEmpty(message = "{faq.answer.notEmpty}")	
+	@NotBlank(message = "{faq.answer.notBlank}")	
 	@Size(min = 1, max = 255, message = "{faq.answer.size}")
 	private String answer;
 	
-	private SortedSet<@NotEmpty(message="{tag.name.notEmpty}") String> tagset = new TreeSet<>();
+	private SortedSet<@NotBlank(message="{tag.name.notBlank}") String> tagset = new TreeSet<>();
 
 	public ClientFaq() {
 	}
