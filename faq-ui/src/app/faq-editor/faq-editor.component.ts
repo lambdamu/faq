@@ -33,7 +33,7 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
         });
 
         // Collect tags for auto-complete excluding existing tags
-        this.tagAutocompleteSource = Observable.create((observer: any) => {
+        this.tagAutocompleteSource = new Observable((observer: any) => {
             observer.next(this.newtag.value);
         })
          .pipe(
