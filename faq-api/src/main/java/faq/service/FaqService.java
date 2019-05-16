@@ -30,10 +30,11 @@ public class FaqService {
 
 	public Page<Faq> browse(String search, Integer page, Integer size, Sort sort) {
 		Page<Faq> faqPage;
+		PageRequest pageRequest = PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE), sort);
 		if (search.isEmpty()) {
-			faqPage = this.faqRepository.findAll(PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE), sort));
+			faqPage = this.faqRepository.findAll(pageRequest);
 		} else {
-			faqPage = this.faqRepository.search(search, PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE), sort));
+			faqPage = this.faqRepository.search(search, pageRequest);
 		}
 		return faqPage;
 	}
@@ -69,7 +70,7 @@ public class FaqService {
 	}
 
 	private void addTags(ClientFaq client, Faq faq) {
-		client.getTagset().forEach(name -> {
+		client.getTagset().stream().forEach(name -> {
 			Tag tag = this.tagRepository.findByName(name)
 					.orElseGet(() -> {
 						return this.tagRepository.save(new Tag(name));

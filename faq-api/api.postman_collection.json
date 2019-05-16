@@ -34,10 +34,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/faqs",
 							"protocol": "http",
@@ -152,7 +148,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"question\": \"\", \"answer\": \"\", \"tagset\": [\"\"]}"
+							"raw": "{\"answer\": \"\", \"tagset\": [\"\"]}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/api/faqs",
@@ -205,10 +201,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/faqs/1",
 							"protocol": "http",
@@ -301,10 +293,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/faqs?search=galaxy",
 							"protocol": "http",
@@ -362,10 +350,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/faqs/1",
 							"protocol": "http",
@@ -420,10 +404,6 @@
 								"value": "{{X-XSRF-TOKEN}}"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/tags/find?containing=a",
 							"protocol": "http",
@@ -482,10 +462,6 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8080/api/login",
 					"protocol": "http",
@@ -535,10 +511,6 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8080/api/login",
 					"protocol": "http",
@@ -574,10 +546,6 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8080/api/login",
 					"protocol": "http",
@@ -601,10 +569,6 @@
 				},
 				"method": "POST",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
 					"raw": "http://localhost:8080/api/logout",
 					"protocol": "http",

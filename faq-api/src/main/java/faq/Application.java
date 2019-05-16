@@ -8,7 +8,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.data.rest.core.event.ValidatingRepositoryEventListener;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
@@ -81,11 +80,6 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	}
 
 	/**
-	 * Exposes Hibernate validation through Spring validation
-	 * and uses Spring i18n bundle.
-	 * 
-	 * Not working properly: <a href="https://github.com/spring-projects/spring-boot/issues/3071">#3071</a>
-	 * 
 	 * @return i18n validator
 	 */
 	@Bean
@@ -93,15 +87,6 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	   LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
 	   bean.setValidationMessageSource(messageSource());
 	   return bean;
-	}
-
-	/**
-	 * Add Hibernate validation <code>beforeCreate</code> and <code>beforeSave</code> events.
-	 */
-	@Override
-	public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener v) {
-		v.addValidator("beforeCreate", getValidator());
-		v.addValidator("beforeSave", getValidator());
 	}
 
 }

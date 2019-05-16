@@ -4,24 +4,33 @@ import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 /**
  * The client FAQ view.
  * 
- * The client view is a simplified version of the Hibernate entity.
- * The tag collection will be compressed to a set of strings.
+ * The client view is a simplified version of the Hibernate entity. The tag
+ * collection will be compressed to a set of strings.
  * 
  * It is used for JSON de/serialization.
  * 
  */
 public class ClientFaq implements Serializable {
 	private static final long serialVersionUID = -8083073367349230351L;
+	@NotEmpty(message = "{faq.question.notEmpty}")
+	@Size(min = 1, max = 255, message = "{faq.question.size}")
 	private String question;
-	private String answer;
-	private SortedSet<String> tagset = new TreeSet<>();
 	
+	@NotEmpty(message = "{faq.answer.notEmpty}")	
+	@Size(min = 1, max = 255, message = "{faq.answer.size}")
+	private String answer;
+	
+	private SortedSet<@NotEmpty(message="{tag.name.notEmpty}") String> tagset = new TreeSet<>();
+
 	public ClientFaq() {
 	}
-	
+
 	public ClientFaq(String question, String answer) {
 		this.question = question;
 		this.answer = answer;
@@ -46,7 +55,7 @@ public class ClientFaq implements Serializable {
 	public SortedSet<String> getTagset() {
 		return tagset;
 	}
-	
+
 	public boolean addTag(String tag) {
 		return this.tagset.add(tag);
 	}

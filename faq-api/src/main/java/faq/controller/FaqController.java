@@ -3,6 +3,8 @@ package faq.controller;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javax.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -54,7 +56,7 @@ public class FaqController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<?> createFaq(@RequestBody ClientFaq newFaq) throws URISyntaxException {
+	public ResponseEntity<?> createFaq(@Valid @RequestBody ClientFaq newFaq) throws URISyntaxException {
 		final Faq faq = this.faqService.createFaq(newFaq);
 		FaqResource resource = this.faqAssembler.toResource(faq);
 		return ResponseEntity
@@ -63,7 +65,7 @@ public class FaqController {
 	}
 
 	@PutMapping("/{id}")
-	public FaqResource updateFaq(@RequestBody ClientFaq updatedFaq, @PathVariable Long id) {
+	public FaqResource updateFaq(@Valid @RequestBody ClientFaq updatedFaq, @PathVariable Long id) {
 		Faq saved = this.faqService.updateFaq(updatedFaq, id);
 		return this.faqAssembler.toResource(saved);
 	}

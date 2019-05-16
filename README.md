@@ -109,8 +109,6 @@ However both back-end and front-end are setup to support internationalisation if
 * Resource bundle in French / English
 * Support for locale change request
 
-Note that there is an interpolation [bug](https://github.com/spring-projects/spring-boot/issues/3071) when using Spring's resource bundle with Hibernate's validator.
-
 #### Front-end
 
 * Interface available in French / English

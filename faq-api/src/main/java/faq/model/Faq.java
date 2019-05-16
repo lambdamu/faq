@@ -20,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.hateoas.Identifiable;
@@ -38,10 +39,12 @@ public class Faq implements Identifiable<Long> {
 	private Long id;
 
 	@Column(nullable = false, unique = true)
+	@NotEmpty(message = "{faq.question.notEmpty}")
 	@Size(min = 1, max = 255, message = "{faq.question.size}")
 	private String question;
 
 	@Column(nullable = false)
+	@NotEmpty(message = "{faq.answer.notEmpty}")
 	@Size(min = 1, max = 255, message = "{faq.answer.size}")
 	private String answer;
 

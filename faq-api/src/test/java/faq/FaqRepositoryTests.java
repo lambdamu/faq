@@ -53,9 +53,13 @@ public class FaqRepositoryTests {
 	}
 	
 	@Test
-	public void findAll() throws Exception {
+	public void testfindAll() throws Exception {
 		List<Faq> faqs = this.faqRepository.findAll();
-		faqs.stream().forEach(System.out::println);
+		int n = faqs.size();
+		Faq faq = new Faq("q", "a");
+		this.faqRepository.save(faq);
+		faqs = this.faqRepository.findAll();
+		assertEquals(n+1, faqs.size());
 	}
 	
 	@Test
