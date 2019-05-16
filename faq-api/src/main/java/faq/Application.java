@@ -84,7 +84,7 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	 * Exposes Hibernate validation through Spring validation
 	 * and uses Spring i18n bundle.
 	 * 
-	 * Not working properly: <a href="https://github.com/spring-projects/spring-boot/issues/3071">#3071</>
+	 * Not working properly: <a href="https://github.com/spring-projects/spring-boot/issues/3071">#3071</a>
 	 * 
 	 * @return i18n validator
 	 */
