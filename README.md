@@ -41,7 +41,7 @@ La suite de ce README est en anglais, tel que je l'avais écrit à l'origine.
 
 ## Requirements
 
-A running PostgreSQL server >= 11.2 with postgres user access.
+A running PostgreSQL server >= 11.2 with postgres user access (or any account with create and grant privileges).
 
 ## Configure
 
@@ -91,8 +91,9 @@ CRUD demo using Spring Boot and Angular as front-end.
 ### Security
 
 * Spring route security
-* JWT not implemented but Spring CSRF is enabled
+* JWT not implemented for this demo but Spring CSRF is enabled
 * Angular route guard
+* PostregSQL user is granted all privileges for the demo (Hibernate DB creation), they should be restricted in a production environment. 
 
 ### Internationalisation support
 
