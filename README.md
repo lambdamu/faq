@@ -23,13 +23,14 @@ L'éditeur de FAQ est disponible
 * soit à partir du sous-menu Admin
 * soit en cliquant sur le lien d'édition disponible pour chaque FAQ listée - si l'utilisateur est admin
 
-Il n'y a qu'une seule interface pour la recherche et le listing et elle est accessible par tous les utilisateurs.
+Il n'y a qu'une seule interface pour la recherche et le listing et elle est accessible par tous les utilisateurs (user stories 3, 4, 5).
 Après une recherche, si l'utilisateur veut accéder au listing, il peut soit clicker sur 'Home/Accueil' soit effacer sa recherche. 
 
 * User story 1 (login): oui mais sans le mot de passe oublié
-* User story 2 (listing): oui, mais la fonctionnalité est également offerte à un non-admin
-* User story 3 (recherche admin): oui, mais la recherche porte sur tous les champs (réponse inclue)
-* User story 4 (recherche anonymous): oui, il s'agit en fait de la même interface que pour la 3
+* User story 2 (editeur): oui
+* User story 3 (listing): oui
+* User story 4 (recherche admin): oui, mais la recherche porte sur tous les champs (réponse inclue)
+* User story 5 (recherche anonyme): oui
 * Assemblé via Gulp ou Webpack: non
 * AngularJS ou Angular 2: non, Angular 7
 * Testing: un tout petit test peut être vérifié via:
