@@ -44,10 +44,7 @@ public class FaqService {
 	}
 
 	public Faq createFaq(ClientFaq newFaq) {
-		Optional<Faq> found = this.faqRepository.findByQuestion(newFaq.getQuestion());
-		if (found.isPresent()) {
-			throw new FaqNotUniqueException(found.get().getId());
-		}
+		questionIsUniqueOrThrow(newFaq.getQuestion());
 
 		Faq faq = this.faqRepository.save(new Faq(newFaq.getQuestion(), newFaq.getAnswer()));
 		addTags(newFaq, faq);
@@ -55,9 +52,12 @@ public class FaqService {
 		return faq;
 	}
 
-	public Faq updateFaq(ClientFaq updatedFaq, Long id) {
+	public Faq updateFaq(ClientFaq updatedFaq, Long id) {		
 		Faq saved = this.faqRepository.findById(id)
 				.map(faq -> {
+					if (!faq.getQuestion().equalsIgnoreCase(updatedFaq.getQuestion())) {
+						questionIsUniqueOrThrow(updatedFaq.getQuestion());
+					}
 					faq.setQuestion(updatedFaq.getQuestion());
 					faq.setAnswer(updatedFaq.getAnswer());
 					addTags(updatedFaq, faq);
@@ -69,6 +69,11 @@ public class FaqService {
 		return saved;
 	}
 
+	public void deleteById(Long id) {
+		this.faqRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+		this.faqRepository.deleteById(id);
+	}
+
 	private void addTags(ClientFaq client, Faq faq) {
 		client.getTagset().stream().forEach(name -> {
 			Tag tag = this.tagRepository.findByName(name)
@@ -78,9 +83,11 @@ public class FaqService {
 			faq.addTag(tag);
 		});
 	}
-
-	public void deleteById(Long id) {
-		this.faqRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
-		this.faqRepository.deleteById(id);
+	
+	private void questionIsUniqueOrThrow(String question) {
+		Optional<Faq> found = this.faqRepository.findByQuestion(question);
+		if (found.isPresent()) {
+			throw new FaqNotUniqueException(found.get().getId());
+		}
 	}
 }
