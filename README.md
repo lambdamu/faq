@@ -114,7 +114,7 @@ Note that there is an interpolation [bug](https://github.com/spring-projects/spr
 #### Front-end
 
 * Interface available in French / English
-* Uses Angular AOT build-in i18n support.
+* Uses Angular AOT built-in i18n support.
 
 
 ### Sample tests
