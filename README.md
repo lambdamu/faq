@@ -97,7 +97,7 @@ CRUD demo using Spring Boot and Angular as front-end.
 * Spring route security
 * JWT not implemented for this demo but CSRF is enabled
 * Angular route guard
-* PostreSQL user is granted all privileges for the demo (Hibernate DB creation), they should be restricted in a production environment. 
+* PostgreSQL user is granted all privileges for the demo (Hibernate DB creation), they should be restricted in a production environment. 
 
 ### Internationalisation support
 
