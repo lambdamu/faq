@@ -82,6 +82,7 @@ CRUD demo using Spring Boot and Angular as front-end.
 * Create a new FAQ (admin)
 * Update a FAQ (admin)
 * Delete a FAQ (admin)
+* Tag prediction/type ahead (FAQ editor)
 
 ### UI proofing
 
