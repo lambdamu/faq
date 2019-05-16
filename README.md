@@ -17,7 +17,9 @@ Dans Postman, vous devez:
 
 ### Challenge technique front-end
 
-L'interface diffère: l'éditeur de FAQ est disponible 
+L'interface diffère. 
+
+L'éditeur de FAQ est disponible 
 * soit à partir du sous-menu Admin
 * soit en cliquant sur le lien d'édition disponible pour chaque FAQ listée - si l'utilisateur est admin
 
@@ -91,13 +93,13 @@ CRUD demo using Spring Boot and Angular as front-end.
 ### Security
 
 * Spring route security
-* JWT not implemented for this demo but Spring CSRF is enabled
+* JWT not implemented for this demo but CSRF is enabled
 * Angular route guard
 * PostregSQL user is granted all privileges for the demo (Hibernate DB creation), they should be restricted in a production environment. 
 
 ### Internationalisation support
 
-The demo contains data in English only and does not support translations. 
+The demo contains sample data in English only and does not support translations. 
 However both back-end and front-end are setup to support internationalisation if needed.
 
 #### Back-end
