@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			
 			.and()
 			.authorizeRequests()
-			.antMatchers("/", "/[a-z][a-z]/*").permitAll()
+			.antMatchers("/", "/[a-z][a-z]", "/[a-z][a-z]/*").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/**").permitAll()
 			.antMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
 			.antMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")

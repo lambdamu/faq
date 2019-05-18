@@ -1,5 +1,6 @@
 package faq;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import org.springframework.boot.SpringApplication;
@@ -12,6 +13,7 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
@@ -29,7 +31,22 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	public static void main(String[] args) throws Throwable {
 		SpringApplication.run(Application.class, args);
 	}
-	
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		Arrays.asList("en", "fr").stream().forEach(lang -> {
+			String forward = "forward:/" + lang + "/index.html";
+		    registry.addViewController(lang).setViewName(forward);
+		    registry.addViewController(lang + "/").setViewName(forward);
+		    registry.addViewController(lang + "/login").setViewName(forward);
+		    registry.addViewController(lang + "/logout").setViewName(forward);
+		    registry.addViewController(lang + "/search").setViewName(forward);
+		    registry.addViewController(lang + "/search/*").setViewName(forward);
+		    registry.addViewController(lang + "/edit/*").setViewName(forward);
+		    registry.addViewController(lang + "/create").setViewName(forward);
+		});
+	}
+
 	/**
 	 * I18n local resolver based on a cookie.
 	 * 
@@ -40,10 +57,10 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	@Bean
 	public LocaleResolver localeResolver() {
 		CookieLocaleResolver slr = new CookieLocaleResolver();
-	    slr.setDefaultLocale(Locale.ENGLISH);
-	    return slr;
+		slr.setDefaultLocale(Locale.ENGLISH);
+		return slr;
 	}
-	
+
 	/**
 	 * Add an interceptor to switch locales.
 	 * 
@@ -53,17 +70,17 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	 */
 	@Bean
 	public LocaleChangeInterceptor localeChangeInterceptor() {
-	    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-	    lci.setParamName("lang");
-	    return lci;
+		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+		lci.setParamName("lang");
+		return lci;
 	}
-	
+
 	/**
 	 * Register the local change interceptor with the application registry.
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-	    registry.addInterceptor(localeChangeInterceptor());
+		registry.addInterceptor(localeChangeInterceptor());
 	}
 
 	/**
@@ -84,9 +101,8 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	 */
 	@Bean
 	public LocalValidatorFactoryBean getValidator() {
-	   LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-	   bean.setValidationMessageSource(messageSource());
-	   return bean;
+		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+		bean.setValidationMessageSource(messageSource());
+		return bean;
 	}
-
 }

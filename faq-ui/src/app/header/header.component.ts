@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 
 @Component({
@@ -7,7 +8,7 @@ import { AppService } from '../app.service';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-    constructor(private api: AppService) {
+    constructor(private api: AppService, private router: Router) {
     }
 
     authenticated() {
@@ -28,6 +29,10 @@ export class HeaderComponent {
 
     isCurrentLocale(locale: string): boolean {
         return this.api.appLocale === locale;
+    }
+
+    getLocalizedUrl(locale: string): string {
+        return '/' + locale + this.router.url;
     }
 
 }
