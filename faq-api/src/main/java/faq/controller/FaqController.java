@@ -45,13 +45,13 @@ public class FaqController {
 			@RequestParam(required = false, defaultValue = "") String search,
 			@RequestParam(required = false, defaultValue = "0") Integer page,
 			@RequestParam(required = false, defaultValue = "20") Integer size) {
-		Page<Faq> faqPage = this.faqService.browse(search, page, size, Sort.by(Direction.DESC, "id"));
+		final Page<Faq> faqPage = this.faqService.browse(search, page, size, Sort.by(Direction.DESC, "id"));
 		return this.pageAssembler.toResource(faqPage, this.faqAssembler);
 	}
 
 	@GetMapping("/{id}")
-	public FaqResource one(@PathVariable("id") Long id) {
-		Faq faq = this.faqService.one(id);
+	public FaqResource getFaq(@PathVariable("id") Long id) {
+		final Faq faq = this.faqService.getFaq(id);
 		return this.faqAssembler.toResource(faq);
 	}
 
@@ -66,7 +66,7 @@ public class FaqController {
 
 	@PutMapping("/{id}")
 	public FaqResource updateFaq(@Valid @RequestBody ClientFaq updatedFaq, @PathVariable Long id) {
-		Faq saved = this.faqService.updateFaq(updatedFaq, id);
+		final Faq saved = this.faqService.updateFaq(updatedFaq, id);
 		return this.faqAssembler.toResource(saved);
 	}
 

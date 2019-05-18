@@ -39,7 +39,7 @@ public class FaqService {
 		return faqPage;
 	}
 
-	public Faq one(Long id) {
+	public Faq getFaq(Long id) {
 		return this.faqRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
 	}
 

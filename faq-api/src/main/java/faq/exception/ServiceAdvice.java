@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * I18n message.
+ * I18n advice.
  *
  */
 @RestControllerAdvice
@@ -50,9 +50,13 @@ class ServiceAdvice {
 		return new ErrorResponse(0, msg, fieldErrors);
 	}
 
+	/**
+	 * TODO: Interpolation bug <a href="https://github.com/spring-projects/spring-boot/issues/3071">#3071</a>.
+	 * 
+	 */
 	@ResponseBody
 	@ExceptionHandler(ConstraintViolationException.class)
-	@ResponseStatus(HttpStatus.PRECONDITION_FAILED)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResponse handleConstaintViolationException(final ConstraintViolationException x, Locale locale) {
 		final Map<String, String> fieldErrors = new HashMap<>();
 		Set<ConstraintViolation<?>> violations = x.getConstraintViolations();

@@ -18,7 +18,7 @@ public class TagService {
 		this.tagRepository = tagRepository;
 	}
 	
-	public Page<Tag> all(Integer page, Integer size) {
+	public Page<Tag> browse(Integer page, Integer size) {
 		return this.tagRepository.findAll(PageRequest.of(page, Math.min(size, MAX_PAGE_SIZE)));
 	}
 

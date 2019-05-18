@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  * The client view is a simplified version of the Hibernate entity. The tag
  * collection will be compressed to a set of strings.
  * 
- * It is used for JSON de/serialization.
+ * It is used for JSON serialization.
  * 
  */
 public class ClientFaq implements Serializable {

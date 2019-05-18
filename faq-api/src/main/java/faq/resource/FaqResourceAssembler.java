@@ -19,7 +19,7 @@ public class FaqResourceAssembler extends ResourceAssemblerSupport<Faq, FaqResou
 	@Override
 	public FaqResource toResource(Faq faq) {
 		FaqResource r = new FaqResource(faq);
-		r.add(linkTo(methodOn(FaqController.class).one(faq.getId())).withSelfRel());
+		r.add(linkTo(methodOn(FaqController.class).getFaq(faq.getId())).withSelfRel());
 		return r;
 	}
 }

@@ -34,10 +34,10 @@ public class TagController {
 	}
 
 	@GetMapping()
-	public PagedResources<TagResource> all(
+	public PagedResources<TagResource> browse(
 			@RequestParam(required = false, defaultValue = "0") Integer page,
 			@RequestParam(required = false, defaultValue = "20") Integer size) {
-		Page<Tag> tagPage = this.tagService.all(page, size);
+		final Page<Tag> tagPage = this.tagService.browse(page, size);
 		return this.pageAssembler.toResource(tagPage, this.tagAssembler);
 	}
 
