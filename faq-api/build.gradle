@@ -25,7 +25,8 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 11.0
+sourceCompatibility = 1.8
+targetCompatibility = 11.0
 
 dependencyManagement {
     imports {
