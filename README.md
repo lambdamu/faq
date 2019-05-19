@@ -44,7 +44,7 @@ La suite de ce README est en anglais, tel que je l'avais écrit à l'origine.
 
 ## Requirements
 
-* Java >= 8 (tested on 11)
+* Java 11 (current target)
 * A running PostgreSQL server >= 11.2 with postgres user access (or any account with create and grant privileges).
 
 ## Configure
