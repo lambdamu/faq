@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, AbstractControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Location} from '@angular/common';
 import { AppService } from '../app.service';
 import { Faq } from '../model/api-resources';
 import { ModalBody } from '../modal/modal.component';
@@ -57,16 +58,15 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
 
     private init() {
         this.message.setLoading();
-        if (this.route.snapshot.routeConfig.path === 'create') {
-            this.router.navigate(['edit', 0], { skipLocationChange: true });
-        } else {
-            const id = +this.route.snapshot.paramMap.get('id');
-            this.api.getFaq(id)
-                .subscribe(
-                   faq => { this.message.clear(); this.initForm(faq); },
-                    (error: HttpErrorResponse) => { this.api.alert(error, this.message); }
-             );
-        }
+        const id = +this.route.snapshot.paramMap.get('id');
+        this.api.getFaq(id)
+               .subscribe(
+                 faq => {
+                     this.message.clear();
+                     this.initForm(faq); 
+                },
+                (error: HttpErrorResponse) => { this.api.alert(error, this.message); }
+        );
     }
 
     private initForm(faq: Faq) {
@@ -87,9 +87,14 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
         this.api.createFaq(this.faq)
             .subscribe(
                 faq => {
-                    window.history.pushState({}, '', `edit/${faq.uid}`);
-                    this.message.setTemplate(MessageStatus.Success, MessageTemplate.Created);
-                    this.initForm(faq);
+                    // I18n page path will still be on create
+                    // this.initForm(faq);
+                    // this.message.setTemplate(MessageStatus.Success, MessageTemplate.Created);
+                    // this.location.replaceState(`edit/${faq.uid}`);
+                    // Update router for i18n
+                    this.message.clear();
+                    this.faqForm.markAsPristine();
+                    this.router.navigate(['edit', faq.uid]);
                 },
                 (error: HttpErrorResponse) => { this.api.alert(error, this.message); }
             );

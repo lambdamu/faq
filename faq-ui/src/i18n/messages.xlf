@@ -180,6 +180,41 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="confirmationRequired" datatype="html">
+        <source>Confirmation required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modal/modal.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="confirmDelete" datatype="html">
+        <source>Are you sure you want to delete? This action is irreversible.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modal/modal.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="conformLeave" datatype="html">
+        <source>There are unsaved changes. Are you sure you want to leave this page?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modal/modal.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="no" datatype="html">
+        <source>No</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modal/modal.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="yes" datatype="html">
+        <source>Yes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/modal/modal.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="editFAQ" datatype="html">
         <source>Edit FAQ</source>
         <context-group purpose="location">
@@ -247,81 +282,46 @@
         <source>New tag</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/faq-editor/faq-editor.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="add" datatype="html">
         <source>Add</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/faq-editor/faq-editor.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="delete" datatype="html">
         <source>Delete</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/faq-editor/faq-editor.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/faq-editor/faq-editor.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="reset" datatype="html">
         <source>Reset</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/faq-editor/faq-editor.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="create" datatype="html">
         <source>Create</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/faq-editor/faq-editor.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="save" datatype="html">
         <source>Save</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/faq-editor/faq-editor.component.html</context>
-          <context context-type="linenumber">69</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="confirmationRequired" datatype="html">
-        <source>Confirmation required</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/modal/modal.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="confirmDelete" datatype="html">
-        <source>Are you sure you want to delete? This action is irreversible.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/modal/modal.component.html</context>
-          <context context-type="linenumber">12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="conformLeave" datatype="html">
-        <source>There are unsaved changes. Are you sure you want to leave this page?</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/modal/modal.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="no" datatype="html">
-        <source>No</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/modal/modal.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="yes" datatype="html">
-        <source>Yes</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/modal/modal.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
     </body>
