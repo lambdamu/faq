@@ -70,8 +70,8 @@ public class FaqService {
 	}
 
 	public void deleteById(Long id) {
-		this.faqRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
-		this.faqRepository.deleteById(id);
+		Faq faq = this.faqRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
+		this.faqRepository.deleteById(faq.getId());
 	}
 
 	private void addTags(ClientFaq client, Faq faq) {

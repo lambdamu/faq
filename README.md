@@ -128,3 +128,4 @@ However both back-end and front-end are setup to support internationalisation if
 * `src/paging/paging.component.spec.ts`
 
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lambdamu_faq&metric=alert_status)](https://sonarcloud.io/dashboard?id=lambdamu_faq)
