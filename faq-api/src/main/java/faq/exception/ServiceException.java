@@ -3,7 +3,7 @@ package faq.exception;
 public class ServiceException extends RuntimeException {
 	private static final long serialVersionUID = -6667500422806333126L;
 	protected final String key;
-	protected final Object[] params;
+	protected final transient Object[] params;
 	
 	public ServiceException(String key) {
 		this(key, null);

@@ -56,7 +56,7 @@ public class FaqController {
 	}
 
 	@PostMapping()
-	public ResponseEntity<?> createFaq(@Valid @RequestBody ClientFaq newFaq) throws URISyntaxException {
+	public ResponseEntity<FaqResource> createFaq(@Valid @RequestBody ClientFaq newFaq) throws URISyntaxException {
 		final Faq faq = this.faqService.createFaq(newFaq);
 		FaqResource resource = this.faqAssembler.toResource(faq);
 		return ResponseEntity

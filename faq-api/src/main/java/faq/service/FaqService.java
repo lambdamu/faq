@@ -19,7 +19,7 @@ import faq.repository.TagRepository;
 @Service
 @Transactional
 public class FaqService {
-	private final int MAX_PAGE_SIZE = 50;
+	private static final int MAX_PAGE_SIZE = 50;
 	private final FaqRepository faqRepository;
 	private final TagRepository tagRepository;
 
@@ -76,10 +76,7 @@ public class FaqService {
 
 	private void addTags(ClientFaq client, Faq faq) {
 		client.getTagset().stream().forEach(name -> {
-			Tag tag = this.tagRepository.findByName(name)
-					.orElseGet(() -> {
-						return this.tagRepository.save(new Tag(name));
-					});
+			Tag tag = this.tagRepository.findByName(name).orElseGet(() -> this.tagRepository.save(new Tag(name)));
 			faq.addTag(tag);
 		});
 	}

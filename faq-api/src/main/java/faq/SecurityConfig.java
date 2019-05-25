@@ -23,15 +23,18 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	private static final String ADMIN = "admin";
+	private static final String USER = "user";
 	  
 	@Bean
+	@Override
 	public UserDetailsService userDetailsService() {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		UserDetails user = User.withUsername("user")
-				.password(encoder.encode("user"))
+		UserDetails user = User.withUsername(USER)
+				.password(encoder.encode(USER))
 				.roles("USER").build();
-		UserDetails admin = User.withUsername("admin")
-				.password(encoder.encode("admin"))
+		UserDetails admin = User.withUsername(ADMIN)
+				.password(encoder.encode(ADMIN))
 				.roles("ADMIN", "USER").build();
 		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
 		manager.createUser(user);
@@ -47,9 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers("/", "/[a-z][a-z]", "/[a-z][a-z]/*").permitAll()
 			.antMatchers(HttpMethod.GET, "/api/**").permitAll()
-			.antMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
-			.antMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
-			.antMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
+			.antMatchers(HttpMethod.POST, "/api/**").hasRole(ADMIN)
+			.antMatchers(HttpMethod.PUT, "/api/**").hasRole(ADMIN)
+			.antMatchers(HttpMethod.DELETE, "/api/**").hasRole(ADMIN)
 			
 			.and()
 			.logout().deleteCookies("remove").invalidateHttpSession(false)

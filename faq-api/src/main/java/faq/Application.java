@@ -100,6 +100,7 @@ public class Application implements RepositoryRestConfigurer, WebMvcConfigurer {
 	 * @return i18n validator
 	 */
 	@Bean
+	@Override
 	public LocalValidatorFactoryBean getValidator() {
 		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
 		bean.setValidationMessageSource(messageSource());

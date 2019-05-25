@@ -44,7 +44,7 @@ public class TagController {
 	@GetMapping("/find")
 	public Resources<TagResource> find(@RequestParam String containing) {
 		return new Resources<>(
-				this.tagService.find(containing).stream().map(tag -> this.tagAssembler.toResource(tag)).collect(Collectors.toList()),
+				this.tagService.find(containing).stream().map(this.tagAssembler::toResource).collect(Collectors.toList()),
 				linkTo(methodOn(TagController.class).find(containing)).withRel("find"));
 	}
 }

@@ -35,5 +35,14 @@ public class FaqResource extends ResourceSupport {
 	public SortedSet<String> getTagset() {
 		return this.tagset;
 	}
+	
+	@Override 
+	public boolean equals(Object o) {
+		if (!super.equals(o)) {
+			return false;
+		}
+		FaqResource r = (FaqResource) o;
+		return this.uid.equals(r.getUid());
+	}
 
 }

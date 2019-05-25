@@ -15,4 +15,13 @@ public class TagResource extends ResourceSupport {
 	public String getName() {
 		return this.name;
 	}
+	
+	@Override 
+	public boolean equals(Object o) {
+		if (!super.equals(o)) {
+			return false;
+		}
+		TagResource r = (TagResource) o;
+		return this.name.equals(r.getName());
+	}
 }

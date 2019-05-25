@@ -40,7 +40,7 @@ class ServiceAdvice {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResponse handleValidationExceptions(MethodArgumentNotValidException x, Locale locale) {
 		final Map<String, String> fieldErrors = new HashMap<>();
-		x.getBindingResult().getAllErrors().forEach((error) -> {
+		x.getBindingResult().getAllErrors().forEach(error -> {
 			String fieldName = ((FieldError) error).getField();
 			String errorMessage = error.getDefaultMessage();
 			fieldErrors.put(fieldName, errorMessage);
@@ -51,7 +51,7 @@ class ServiceAdvice {
 	}
 
 	/**
-	 * TODO: Interpolation bug <a href="https://github.com/spring-projects/spring-boot/issues/3071">#3071</a>.
+	 * @see Interpolation bug <a href="https://github.com/spring-projects/spring-boot/issues/3071">#3071</a>.
 	 * 
 	 */
 	@ResponseBody

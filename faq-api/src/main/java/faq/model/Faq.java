@@ -117,7 +117,7 @@ public class Faq implements Identifiable<Long> {
 
 	@Transient
 	public SortedSet<String> getTagSet() {
-		return this.tags.stream().map(tag -> tag.getName())
+		return this.tags.stream().map(Tag::getName)
 				.collect(Collectors.toCollection(TreeSet::new));
 	}
 

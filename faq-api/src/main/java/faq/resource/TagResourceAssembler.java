@@ -14,9 +14,7 @@ public class TagResourceAssembler extends ResourceAssemblerSupport<Tag, TagResou
 	}
 
 	@Override
-	public TagResource toResource(Tag Tag) {
-		TagResource r = new TagResource(Tag);
-		// TODO: add relevant links as needed
-		return r;
+	public TagResource toResource(Tag tag) {
+		return new TagResource(tag);
 	}
 }
