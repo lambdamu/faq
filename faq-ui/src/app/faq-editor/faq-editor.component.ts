@@ -63,7 +63,7 @@ export class FaqEditorComponent implements OnInit, CanComponentDeactivate {
                .subscribe(
                  faq => {
                      this.message.clear();
-                     this.initForm(faq); 
+                     this.initForm(faq);
                 },
                 (error: HttpErrorResponse) => { this.api.alert(error, this.message); }
         );
